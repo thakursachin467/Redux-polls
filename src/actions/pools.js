@@ -1,7 +1,7 @@
 export const RECEIVE_POOLS = "RECEIVE_POOLS";
-export function receivepools(pools) {
+export function receivepools(polls) {
     return {
         type: RECEIVE_POOLS,
-        pools
+        polls
     }
 }
