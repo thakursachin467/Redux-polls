@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
     state = {
@@ -33,7 +34,9 @@ class Dashboard extends Component {
                     {
                         list.map((poll) => (
                             <li key={poll.id}>
-                                {poll.question}
+                                <Link to={`polls/${poll.id}`}>
+                                    {poll.question}
+                                </Link>
                             </li>
                         ))
                     }

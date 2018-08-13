@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import { handlepolls } from '../actions/pools';
 class Addpolls extends Component {
     state = {
         question: '',
@@ -25,7 +26,8 @@ class Addpolls extends Component {
 
     submitHandler = (e) => {
         e.preventDefault();
-        console.log(this.state)
+        this.props.dispatch(handlepolls(this.state))
+        this.props.history.push('/');
     }
     render() {
         const { question, a, b, c, d } = this.state
@@ -52,4 +54,4 @@ class Addpolls extends Component {
         )
     }
 }
-export default Addpolls;
+export default connect()(Addpolls);

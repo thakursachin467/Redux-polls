@@ -169,23 +169,23 @@ let polls = {
   },
 }
 
-function generateUID () {
+function generateUID() {
   return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
 }
 
-export function _getUsers () {
+export function _getUsers() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({...users}), 1000)
+    setTimeout(() => res({ ...users }), 1000)
   })
 }
 
-export function _getPolls () {
+export function _getPolls() {
   return new Promise((res, rej) => {
-    setTimeout(() => res({...polls}), 1000)
+    setTimeout(() => res({ ...polls }), 1000)
   })
 }
 
-function formatPoll (poll) {
+function formatPoll(poll) {
   return {
     ...poll,
     id: generateUID(),
@@ -209,7 +209,7 @@ function formatPoll (poll) {
   }
 }
 
-export function _savePoll (poll) {
+export function _savePoll(poll) {
   return new Promise((res, rej) => {
     const formattedPoll = formatPoll(poll)
 
@@ -224,15 +224,15 @@ export function _savePoll (poll) {
   })
 }
 
-export function _savePollAnswer ({ authedUser, id, answer }) {
+export function _savePollAnswer({ authUser, id, answer }) {
   return new Promise((res, rej) => {
     setTimeout(() => {
-      const user = users[authedUser]
+      const user = users[authUser]
       const poll = polls[id]
 
       users = {
         ...users,
-        [authedUser]: {
+        [authUser]: {
           ...user,
           answers: {
             ...user.answers,
@@ -247,7 +247,7 @@ export function _savePollAnswer ({ authedUser, id, answer }) {
           ...poll,
           [answer]: {
             ...poll[answer],
-            votes: poll[answer].votes.concat([authedUser])
+            votes: poll[answer].votes.concat([authUser])
           }
         }
       }
